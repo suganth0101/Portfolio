@@ -802,7 +802,10 @@
     ];
     const dynamic = document.createElement('span');
     dynamic.className = 'dynamic-line';
-    document.querySelector('.tagline').appendChild(dynamic);
+    const tagline = document.querySelector('.tagline');
+    tagline.appendChild(document.createElement('br'));
+    tagline.appendChild(document.createElement('br'));
+    tagline.appendChild(dynamic);
 
     let index = 0;
     let char = 0;
@@ -845,7 +848,7 @@
       document.getElementById('navLinks').classList.toggle('open');
     });
 
-    const sections = document.querySelectorAll('section, header, .hero-card, .skill-card, .project-card, .timeline-item, .contact-panel');
+    const sections = document.querySelectorAll('section, header, .reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -860,7 +863,7 @@
       observer.observe(section);
     });
 
-    const sectionMap = Array.from(document.querySelectorAll('section')).map(section => ({
+    const sectionMap = Array.from(document.querySelectorAll('section, header#home')).map(section => ({
       id: section.id,
       offset: section.offsetTop
     }));
