@@ -213,8 +213,77 @@
 
     .hero-grid {
       display: grid;
-      gap: 24px;
-      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      align-items: center;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+    }
+
+    .profile-image-wrapper {
+      width: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      margin-bottom: 22px;
+    }
+
+    .profile-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .profile-copy {
+      display: grid;
+      gap: 14px;
+    }
+
+    .profile-copy h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--text);
+    }
+
+    .profile-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .social-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .social-chip:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 188, 212, 0.24);
     }
 
     .hero-card {
@@ -477,6 +546,9 @@
 
     @media (max-width: 760px) {
       .page { padding: 0 18px 48px; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
       .nav-links {
         position: fixed;
         inset: 72px 18px auto auto;
@@ -508,6 +580,9 @@
       .hero-card, .skill-card, .project-card, .contact-panel {
         padding: 20px;
       }
+      .profile-card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -530,13 +605,29 @@
 
   <main class="page">
     <header id="home">
-      <div class="hero reveal">
-        <div class="eyebrow">Full-stack developer</div>
-        <h1>Hi, I’m Suganth N.</h1>
-        <p class="tagline">I build modern web experiences using clean design and efficient code. I help businesses turn ideas into responsive applications with strong UI and a reliable backend.</p>
-        <div class="cta-wrap">
-          <a class="btn btn-primary" href="#projects">View My Work</a>
-          <a class="btn btn-secondary" href="mailto:suganth0101.n@gmail.com">Email Me</a>
+      <div class="hero-grid">
+        <div class="hero reveal">
+          <div class="eyebrow">Full-stack developer</div>
+          <h1>Hi, I’m Suganth N.</h1>
+          <p class="tagline">I build modern web experiences using clean design and efficient code. I help businesses turn ideas into responsive applications with strong UI and a reliable backend.</p>
+          <div class="cta-wrap">
+            <a class="btn btn-primary" href="#projects">View My Work</a>
+            <a class="btn btn-secondary" href="mailto:suganth0101.n@gmail.com">Email Me</a>
+          </div>
+        </div>
+
+        <div class="profile-card reveal">
+          <div class="profile-image-wrapper">
+            <img src="image.jpeg" alt="Portrait of Suganth N" />
+          </div>
+          <div class="profile-copy">
+            <h2>Hi there — I’m Suganth.</h2>
+            <p>Experienced in web and full-stack development with strong skills in HTML, CSS, JavaScript, Python, MongoDB and modern frontend tooling. I love working on practical products that help teams and businesses grow online.</p>
+            <div class="social-links">
+              <a class="social-chip" href="https://github.com/suganth0101" target="_blank" rel="noreferrer"><i class="fab fa-github"></i>GitHub</a>
+              <a class="social-chip" href="https://www.linkedin.com/in/suganth-n-50006624a" target="_blank" rel="noreferrer"><i class="fab fa-linkedin"></i>LinkedIn</a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -652,6 +743,13 @@
             <div>
               <p><strong>LinkedIn</strong></p>
               <a href="https://www.linkedin.com/in/suganth-n-50006624a" target="_blank" rel="noreferrer">linkedin.com/in/suganth-n-50006624a</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-github"></i>
+            <div>
+              <p><strong>GitHub</strong></p>
+              <a href="https://github.com/suganth0101" target="_blank" rel="noreferrer">github.com/suganth0101</a>
             </div>
           </div>
           <div class="contact-actions">
