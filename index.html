@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suganth N | Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-y8VyX2ffF6EYzQbq+YQ9yq08D5f9s1MqVusdNoD8bz7Y5uhy1zk5V7B4HHzV1sVnhRHBvV0CDn5bKWzJRBbHlw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #080a0f;
+      --surface: #0f1520;
+      --surface-alt: #111827;
+      --text: #e6edf9;
+      --muted: #8e99b8;
+      --accent: #00bcd4;
+      --shadow: rgba(0, 188, 212, 0.18);
+      --radius: 24px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, rgba(0, 188, 212, 0.08), transparent 28%),
+                  linear-gradient(180deg, #080a0f 0%, #05070d 100%);
+      color: var(--text);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(0, 188, 212, 0.08), transparent 16%),
+                  radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.04), transparent 18%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .page {
+      width: min(100%, 1200px);
+      margin: 0 auto;
+      padding: 0 24px 72px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 10, 15, 0.86);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      text-transform: uppercase;
+      font-size: 0.92rem;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    header {
+      min-height: calc(100vh - 88px);
+      padding-top: 72px;
+      display: grid;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 22px;
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.79rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: rgba(0, 188, 212, 0.6);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 6vw, 5.25rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .tagline {
+      font-size: clamp(1rem, 1.1vw, 1.25rem);
+      max-width: 680px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .dynamic-line {
+      display: inline-block;
+      color: var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid var(--accent);
+      padding-right: 4px;
+      animation: blink 0.85s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .cta-wrap {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(0,188,212,0.16), rgba(0,188,212,0.24));
+      color: var(--text);
+      border-color: rgba(0, 188, 212, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(0, 188, 212, 0.14), transparent 28%);
+      pointer-events: none;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    section {
+      padding: 100px 0 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .section-heading span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(0, 188, 212, 0.12);
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 140px;
+    }
+
+    .skill-card h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .skill-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .project-grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      padding: 26px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 188, 212, 0.28);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+    }
+
+    .project-card h3 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+    }
+
+    .project-card p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0, 188, 212, 0.12);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .timeline {
+      border-left: 2px solid rgba(0, 188, 212, 0.18);
+      padding-left: 24px;
+      display: grid;
+      gap: 28px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 26px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -13px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.12);
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .timeline-item span {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+    }
+
+    .contact-panel {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-item i {
+      font-size: 1.2rem;
+      color: var(--accent);
+      min-width: 26px;
+      margin-top: 4px;
+    }
+
+    .contact-item div {
+      display: grid;
+      gap: 6px;
+    }
+
+    .contact-item a,
+    .contact-item p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.98rem;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .contact-actions a {
+      width: fit-content;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 0 18px 48px; }
+      .nav-links {
+        position: fixed;
+        inset: 72px 18px auto auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 24px;
+        background: rgba(8, 10, 15, 0.98);
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+        transform: translateX(110%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .nav-links.open {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header { padding-top: 42px; }
+      .hero-card, .skill-card, .project-card, .contact-panel {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="nav-wrapper page">
+      <a class="brand" href="#home"><span>S</span>uganth N</a>
+      <button class="menu-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <main class="page">
+    <header id="home">
+      <div class="hero reveal">
+        <div class="eyebrow">Full-stack developer</div>
+        <h1>Hi, I’m Suganth N.</h1>
+        <p class="tagline">I build modern web experiences using clean design and efficient code. I help businesses turn ideas into responsive applications with strong UI and a reliable backend.</p>
+        <div class="cta-wrap">
+          <a class="btn btn-primary" href="#projects">View My Work</a>
+          <a class="btn btn-secondary" href="mailto:suganth0101.n@gmail.com">Email Me</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <h2>About me</h2>
+        <p>Based in Anna Nagar, Dharmapuri, I am seeking a challenging position in web and full-stack development. I enjoy turning thoughtful ideas into elegant products while collaborating with teams and driving strong user engagement.</p>
+      </div>
+    </header>
+
+    <section id="skills">
+      <div class="section-heading reveal"><span><i class="fas fa-code"></i></span><h2>Skills</h2></div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <h3>Web Development</h3>
+          <p>HTML, CSS, JavaScript, Bootstrap, React.js</p>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Backend & Data</h3>
+          <p>Python, MongoDB, Django, API Integration</p>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Design & Delivery</h3>
+          <p>Responsive UI, performance optimization, collaboration, communication.</p>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Languages</h3>
+          <p>Tamil (Native), English (Proficient)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-heading reveal"><span><i class="fas fa-layer-group"></i></span><h2>Projects</h2></div>
+      <div class="project-grid">
+        <article class="project-card reveal">
+          <h3>Event Management System</h3>
+          <p>A web app that lets users browse, book, and manage events efficiently with a Python backend and responsive frontend.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Bootstrap</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <h3>Coconut Business ERP</h3>
+          <p>A full-stack agricultural management platform with real-time dashboards, production tracking, and dynamically filtered data tables using React hooks and backend API integration.</p>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Django</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-heading reveal"><span><i class="fas fa-graduation-cap"></i></span><h2>Education</h2></div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <span>MSc. Electronic Media • PSG College of Arts and Science</span>
+          <h3>2026</h3>
+          <p>Advanced study in media technology, digital storytelling, and interactive content creation.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <span>B.Voc Networking and Mobile Application • PSG College of Arts and Science</span>
+          <h3>2024</h3>
+          <p>Graduated with a CGPA of 6.6, focusing on mobile development, networking, and software systems.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <span>HSC • Senthil Matriculation School</span>
+          <h3>2021</h3>
+          <p>Completed higher secondary education with a focus on science and technology fundamentals.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <span>SSLC • Senthil Matriculation School</span>
+          <h3>2019</h3>
+          <p>Secondary schooling with strong academic performance and preparations for advanced study.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-heading reveal"><span><i class="fas fa-envelope-open-text"></i></span><h2>Contact</h2></div>
+      <div class="contact-grid">
+        <div class="contact-panel reveal">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <p><strong>Location</strong></p>
+              <p>Anna Nagar, Dharmapuri – 636 701</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <p><strong>Email</strong></p>
+              <a href="mailto:suganth0101.n@gmail.com">suganth0101.n@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <p><strong>Phone</strong></p>
+              <a href="tel:+918825586565">+91 88255 86565</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <div>
+              <p><strong>LinkedIn</strong></p>
+              <a href="https://www.linkedin.com/in/suganth-n-50006624a" target="_blank" rel="noreferrer">linkedin.com/in/suganth-n-50006624a</a>
+            </div>
+          </div>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:suganth0101.n@gmail.com"><i class="fas fa-paper-plane"></i>Send a message</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/suganth-n-50006624a" target="_blank" rel="noreferrer"><i class="fab fa-linkedin"></i>View LinkedIn</a>
+          </div>
+          <p class="footer-note">Internship: Digibytz DigitalIndia Pvt Ltd, Coimbatore — January 2023. Achievement: Research on digital media posting frequency and customer engagement.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const phrases = [
+      'Web Developer.',
+      'Full-Stack Enthusiast.',
+      'UI-Focused Creator.',
+      'Problem Solver.'
+    ];
+    const dynamic = document.createElement('span');
+    dynamic.className = 'dynamic-line';
+    document.querySelector('.tagline').appendChild(dynamic);
+
+    let index = 0;
+    let char = 0;
+    let current = '';
+    let isDeleting = false;
+    const speed = 80;
+
+    function typeWriter() {
+      const fullText = phrases[index];
+      if (!isDeleting) {
+        current = fullText.slice(0, char + 1);
+        char++;
+        if (char === fullText.length) {
+          isDeleting = true;
+          setTimeout(typeWriter, 1200);
+          return;
+        }
+      } else {
+        current = fullText.slice(0, char - 1);
+        char--;
+        if (char === 0) {
+          isDeleting = false;
+          index = (index + 1) % phrases.length;
+        }
+      }
+      dynamic.textContent = current;
+      setTimeout(typeWriter, isDeleting ? speed / 2 : speed);
+    }
+
+    typeWriter();
+
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('open');
+      });
+    });
+
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    const sections = document.querySelectorAll('section, header, .hero-card, .skill-card, .project-card, .timeline-item, .contact-panel');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    sections.forEach(section => {
+      section.classList.add('reveal');
+      observer.observe(section);
+    });
+
+    const sectionMap = Array.from(document.querySelectorAll('section')).map(section => ({
+      id: section.id,
+      offset: section.offsetTop
+    }));
+
+    function updateActiveLink() {
+      const scrollPos = window.scrollY + 120;
+      sectionMap.forEach(section => {
+        const link = document.querySelector(`.nav-links a[href="#${section.id}"]`);
+        if (!link) return;
+        if (scrollPos >= section.offset && scrollPos < section.offset + document.getElementById(section.id).offsetHeight) {
+          navLinks.forEach(nav => nav.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    window.addEventListener('resize', () => {
+      sectionMap.forEach(section => {
+        section.offset = document.getElementById(section.id).offsetTop;
+      });
+    });
+
+    updateActiveLink();
+  </script>
+</body>
+</html>
